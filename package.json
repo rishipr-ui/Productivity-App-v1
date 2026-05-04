@@ -1,0 +1,51 @@
+{
+  "name": "hud-widget",
+  "version": "1.0.0",
+  "description": "Minimal translucent desktop productivity widget (Spotify, tasks, Pomodoro)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "electron-store": "^8.2.0"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.hudwidget.app",
+    "productName": "HUD Widget",
+    "files": [
+      "main.js",
+      "preload.js",
+      "store.js",
+      "renderer/**/*",
+      "spotify/**/*"
+    ],
+    "protocols": [
+      {
+        "name": "HUD Widget OAuth",
+        "schemes": ["myapp"]
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": ["nsis"]
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": ["dmg"]
+    },
+    "linux": {
+      "target": ["AppImage"]
+    }
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com 'self'; connect-src https://api.spotify.com https://accounts.spotify.com 'self'; img-src 'self' data: https: blob:;" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HUD Widget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="widget" id="widget">
+      <header class="chrome" id="drag-region">
+        <span class="chrome-title">HUD</span>
+        <div class="chrome-actions">
+          <button type="button" class="icon-btn" id="btn-clickthrough" title="Click-through — Ctrl+Shift+W to restore">◇</button>
+          <button type="button" class="win-btn win-min" id="btn-minimize" title="Minimize">−</button>
+          <button type="button" class="win-btn win-expand" id="btn-expand" title="Settings">▢</button>
+          <button type="button" class="win-btn win-close" id="btn-close" title="Close">×</button>
+        </div>
+      </header>
+
+      <div class="widget-scroll">
+        <section class="panel spotify-panel" aria-label="Now playing">
+          <div class="panel-head">
+            <span class="label">Now playing</span>
+            <button type="button" class="link-btn" id="btn-spotify-connect">Connect</button>
+          </div>
+          <div class="spotify-body" id="spotify-body">
+            <div class="album-art" id="album-art" data-placeholder></div>
+            <div class="spotify-meta">
+              <div class="track-title" id="track-title">—</div>
+              <div class="track-artist secondary" id="track-artist">No song playing</div>
+              <div class="progress-wrap">
+                <div class="progress-track">
+                  <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="progress-times secondary" id="progress-times"></div>
+              </div>
+            </div>
+          </div>
+          <div class="spotify-transport" id="spotify-transport" aria-label="Playback">
+            <button type="button" class="transport-btn" id="btn-spotify-prev" title="Previous track">⏮</button>
+            <button type="button" class="transport-btn transport-btn-main" id="btn-spotify-playpause" title="Play or pause">▶</button>
+            <button type="button" class="transport-btn" id="btn-spotify-next" title="Next track">⏭</button>
+          </div>
+        </section>
+
+        <section class="panel tasks-panel" aria-label="Tasks">
+          <div class="panel-head">
+            <span class="label">Tasks</span>
+          </div>
+          <form class="task-form" id="task-form" autocomplete="off">
+            <input type="text" id="task-input" class="task-input" placeholder="Add task…" maxlength="120" />
+          </form>
+          <ul class="task-list" id="task-list"></ul>
+        </section>
+
+        <section class="panel pomodoro-panel" aria-label="Pomodoro">
+          <div class="pomodoro-head">
+            <span class="pomodoro-mode" id="pomodoro-mode">Focus</span>
+            <span class="pomodoro-time" id="timer-display">25:00</span>
+          </div>
+          <div class="pomo-bar-track" aria-hidden="true">
+            <div class="pomo-bar-fill" id="pomo-bar-fill"></div>
+          </div>
+          <div class="pomodoro-controls">
+            <button type="button" class="btn btn-block" id="btn-pomo-start">Start</button>
+            <button type="button" class="btn btn-block" id="btn-pomo-pause">Pause</button>
+            <button type="button" class="btn btn-block ghost" id="btn-pomo-reset">Reset</button>
+          </div>
+        </section>
+
+        <section class="panel settings-panel" id="settings-panel" hidden>
+          <div class="panel-head">
+            <span class="label">Settings</span>
+          </div>
+          <div class="settings-grid">
+            <label class="setting-field">
+              <span class="setting-label">Focus (min)</span>
+              <input type="number" id="input-work-min" class="setting-input" min="1" max="120" step="1" />
+            </label>
+            <label class="setting-field">
+              <span class="setting-label">Break (min)</span>
+              <input type="number" id="input-break-min" class="setting-input" min="1" max="60" step="1" />
+            </label>
+          </div>
+          <p class="settings-hint secondary">Spotify playback needs the app open on a device. Re-connect Spotify once to grant playback permissions.</p>
+          <div class="accent-row">
+            <span class="accent-label secondary">Accent</span>
+            <div class="swatches" id="accent-swatches"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
