@@ -1,4 +1,4 @@
-# HUD Widget
+#ProdAPP
 
 Minimal always-on-top desktop productivity overlay built with **Electron**: Spotify now playing (read-only), a tiny task list, Pomodoro timer, and an accent color picker. The UI uses a dark frosted-glass style with **DM Mono**.
 
